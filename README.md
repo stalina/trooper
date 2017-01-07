@@ -12,7 +12,7 @@ Launch
 it uses 2 environments variables :
  * PLANET_URL : which is the planet URL where to launch the trooper
  * TROOPER_NAME : which is the name of your trooper
- * TROOPER_IMG : which is the url of the image that represents the trooper
+ * SHIP_IMG : which is the url of the image that represents the trooper
     > The image should be a png file  
     Which size is 38x28  
     Seen from above  

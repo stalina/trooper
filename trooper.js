@@ -27,7 +27,7 @@ http.createServer(function (req, res) {
     } finally {
         console.log('++++++++++++++++++++++++++++++++++++');
     }
-}).listen(1337, "127.0.0.1", function() {
+}).listen(1337, function() {
 
     //runs when our server is created
     console.log('Server running at http://127.0.0.1:1337/');
@@ -60,10 +60,10 @@ function killTrooper(res){
 
 function showImage(res){
     res.writeHead(302, {
-        'Location': process.env.TROOPER_IMG
+        'Location': process.env.SHIP_IMG
     });
     res.end();
-    console.log("sending : "+ process.env.TROOPER_IMG);
+    console.log("sending : "+ process.env.SHIP_IMG);
 }
 
 function launchTrooper(){
