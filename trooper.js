@@ -27,7 +27,7 @@ http.createServer(function (req, res) {
     } finally {
         console.log('++++++++++++++++++++++++++++++++++++');
     }
-}).listen(1337, "0.0.0.0", function() {
+}).listen(1337, function() {
 
     //runs when our server is created
     console.log('Server running at http://127.0.0.1:1337/');
