@@ -84,7 +84,7 @@ function launchTrooper(){
         path: '/trooper/launch',
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
             'Content-Length': Buffer.byteLength(postData)
         }
     };
