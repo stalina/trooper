@@ -4,7 +4,7 @@ var url   = require('url');
 var querystring = require('querystring');
 
 console.log('***************************************');
-console.log('Starting server @ http://127.0.0.1:1337/');
+console.log('Starting server @ http://'+process.env.TROOPER_HOST+':'+process.env.TROOPER_PORT+'/');
 
 http.createServer(function (req, res) {
     //wrap calls in a try catch
@@ -27,10 +27,10 @@ http.createServer(function (req, res) {
     } finally {
         console.log('++++++++++++++++++++++++++++++++++++');
     }
-}).listen(1337, function() {
+}).listen(9000, function() {
 
     //runs when our server is created
-    console.log('Server running at http://127.0.0.1:1337/');
+    console.log('Server running at http://'+process.env.TROOPER_HOST+':'+process.env.TROOPER_PORT+'/');
     console.log('***************************************');
 
     launchTrooper();
@@ -72,15 +72,16 @@ function launchTrooper(){
     console.log('Launching trooper');
 
     var postData = querystring.stringify({
-        'trooper' : "localhost",
+        'trooperHost' : process.env.TROOPER_HOST,
+        'trooperPort' : process.env.TROOPER_PORT,
         'name' : process.env.TROOPER_NAME,
-        'image' : process.env.TROOPER_IMG
+        'image' : process.env.SHIP_IMG
     });
 
     var options = {
-        hostname: process.env.PLANET_URL,
-        port: 1337,
-        path: '/launch',
+        hostname: process.env.PLANET_HOST,
+        port: process.env.PLANET_PORT,
+        path: '/trooper/launch',
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
