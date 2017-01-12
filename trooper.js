@@ -71,7 +71,7 @@ function launchTrooper(){
     console.log('----------------------------------------');
     console.log('Launching trooper');
 
-    var postData = querystring.stringify({
+    var postData = JSON.stringify({
         'trooperHost' : process.env.TROOPER_HOST,
         'trooperPort' : process.env.TROOPER_PORT,
         'name' : process.env.TROOPER_NAME,
@@ -91,7 +91,7 @@ function launchTrooper(){
 
     console.log("Out Going request : ");
     console.log(" To : "+ JSON.stringify(options));
-    console.log(" Data : " +JSON.stringify(postData));
+    console.log(" Data : " +postData);
     var req = http.request(options, (res) => {
             console.log(`STATUS: ${res.statusCode}`);
             console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
@@ -104,7 +104,7 @@ function launchTrooper(){
             });
             res.on('end', () => {
                 console.log('No more data in response.');
-                console.log("Incomming response : from "+process.env.PLANET_URL+"/launch : "+body);
+                console.log("Incomming response : from "+process.env.PLANET_HOST+':'+process.env.PLANET_PORT+"/launch : "+body);
                 console.log('----------------------------------------');
             });
         });
