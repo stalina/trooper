@@ -16,7 +16,7 @@ http.createServer(function (req, res) {
 
         var parts = req.url.split('/');
         if (req.url === "/") {
-            showImage(res);
+            showVariables(res);
         } else if (req.url === "/die") {
             killTrooper(res);
         } else {
@@ -58,11 +58,17 @@ function killTrooper(res){
     process.exit(0);
 }
 
-function showImage(res){
-    res.writeHead(302, {
-        'Location': process.env.SHIP_IMG
+function showVariables(res){
+    var variables = JSON.stringify({
+        'TROOPER_HOST' : process.env.PLANET_HOST,
+        'TROOPER_PORT' : process.env.PLANET_PORT,
+        'TROOPER_HOST' : process.env.TROOPER_HOST,
+        'TROOPER_PORT' : process.env.TROOPER_PORT,
+        'TROOPER_NAME' : process.env.TROOPER_NAME,
+        'SPACESHIP' : process.env.SPACESHIP
     });
-    res.end();
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end(variables, 'utf-8');
     console.log("sending : "+ process.env.SHIP_IMG);
 }
 
@@ -75,7 +81,7 @@ function launchTrooper(){
         'trooperHost' : process.env.TROOPER_HOST,
         'trooperPort' : process.env.TROOPER_PORT,
         'name' : process.env.TROOPER_NAME,
-        'image' : process.env.SHIP_IMG
+        'image' : process.env.SPACESHIP
     });
 
     var options = {
